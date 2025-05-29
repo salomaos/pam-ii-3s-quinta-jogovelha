@@ -1,47 +1,73 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
+  const cell = () => {
+    return (
+      <TouchableOpacity style={style.cell}>
+        <Text style={style.cellContent}>X</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
-    <View>
-      <Text>Jogo da Velha</Text>
-      <Text>Vencedor</Text>
+    <View style={style.container}>
+      <Text style={style.title}>Jogo da Velha</Text>
+      <Text style={style.status}>Vencedor</Text>
 
-      <View>
-        <View>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
+      <View style={style.board}>
+        <View style={style.row}>
+          {cell()}
+          {cell()}
+          {cell()}
         </View>
-        <View>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
+        <View style={style.row}>
+          {cell()}
+          {cell()}
+          {cell()}
         </View>
-        <View>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>X</Text>
-          </TouchableOpacity>
+        <View style={style.row}>
+          {cell()}
+          {cell()}
+          {cell()}
         </View>
       </View>
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#B2D8CE",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  status: {
+    fontSize: 18,
+    marginBottom: 20,
+  },
+  board: {
+    marginBottom: 20,
+  },
+  row: {
+    flexDirection: "row",
+  },
+  cell: {
+    width: 80,
+    height: 80,
+    borderWidth: 2,
+    borderColor: "#5459AC",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
+  },
+  cellContent: {
+    fontSize: 36,
+    fontWeight: "bold",
+  },
+});
