@@ -1,10 +1,23 @@
+import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
-  const cell = () => {
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = useState("X");
+  const [winner, setWinner] = useState(null);
+
+  const handlePress = (index: number) => {
+    const newBoard = [...board];
+    newBoard[index] = currentPlayer;
+    setBoard(newBoard);
+
+    setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+  };
+
+  const cell = (index: number) => {
     return (
-      <TouchableOpacity style={style.cell}>
-        <Text style={style.cellContent}>X</Text>
+      <TouchableOpacity style={style.cell} onPress={() => handlePress(index)}>
+        <Text style={style.cellContent}>{board[index]}</Text>
       </TouchableOpacity>
     );
   };
@@ -16,19 +29,19 @@ export default function Index() {
 
       <View style={style.board}>
         <View style={style.row}>
-          {cell()}
-          {cell()}
-          {cell()}
+          {cell(0)}
+          {cell(1)}
+          {cell(2)}
         </View>
         <View style={style.row}>
-          {cell()}
-          {cell()}
-          {cell()}
+          {cell(3)}
+          {cell(4)}
+          {cell(5)}
         </View>
         <View style={style.row}>
-          {cell()}
-          {cell()}
-          {cell()}
+          {cell(6)}
+          {cell(7)}
+          {cell(8)}
         </View>
       </View>
     </View>
